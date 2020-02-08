@@ -1,0 +1,12 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+
+    <div class="menu3">
+        <h1>删除教务员信息</h1>
+        <form method="post" action="/admin/changeEA/delete">
+            <label>教工号</label>
+            <input type="text" name="txt" >
+            <input type="submit" style="margin-left: 300px; margin-top: 30px" value="删除">
+        </form>
+    </div>
+{% endblock %}

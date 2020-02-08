@@ -1,0 +1,58 @@
+{% extends 'student/student.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3">
+            <h1>查询学科成绩信息</h1>
+            <form method="post" action="/student/grade/query">
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+                {% endwith %}
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3">
+            <script>
+                function sbt(id) {
+                    if (confirm("您确认删除学号为：" + id + "的信息吗？") == true) {
+                        window.location.href = "/staff/changeStuInfo/delete?id=" + id
+                        alert("删除成功~")
+                    }
+                }
+                function sel() {
+                    document.getElementById('form').submit();
+                }
+            </script>
+            <h1 style="margin-left: 320px">成绩单</h1>
+            <form id="form" method="get" action="/student/grade/query">
+                <table class="altrowstable" id="alternatecolor" style="margin-left: 30px; width: 750px">
+                    <tr>
+                        <th style="width:auto;">
+                            {{ head[0] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[1] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[2] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[3] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[4] }}
+                        </th>
+                    </tr>
+                    {% for i in res %}
+                        <tr>
+                            {% for j in i %}
+                                <td>{{ j }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <input type="button" onclick="sel()" style="margin-left: 300px; margin-top: 30px" value="返回">
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

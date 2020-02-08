@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .content-item {
+            position: relative;
+            padding: 20px 12px;
+            text-align: center;
+            display: none;
+            min-height: 500px;
+            box-sizing: border-box
+        }
+
+        div, input, textarea, ul {
+            resize: none;
+            outline: 0;
+            font-size: inherit
+        }
+
+        .content-item .user-item {
+            margin-top: 14px;
+            text-align: left
+        }
+    </style>
+</head>
+<body>
+<div class="content-item" type="account">
+    <div class="item-right">
+        <div class="user-item">
+            <label>头像</label>
+            <div>
+                <form id="upload_photo_form" action="/profile/photo-upload" method="post" enctype="multipart/form-data">
+                    <div class="photo">
+                        <img src='https://accounts.processon.com/uphoto/11/279/5d837403e4b05a8b7536de3c.png'/>
+                        <div class="photo-mask">编辑头像</div>
+                        <input type="file" class="img-upload" accept="image/jpeg,image/gif,image/png" name="photo">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="user-item">
+            <label>昵称</label>
+            <div><input type="text" class="txt" value="" placeholder="请输15位以内的昵称" name="fullName"/></div>
+        </div>
+        <div class="user-item">
+            <label>邮箱</label>
+            <div>
+                <input type="text" class="txt" value="" disabled name="email"/>
+                <a data-type="email">修改邮箱</a>
+            </div>
+        </div>
+        <div class="user-item">
+            <label>手机</label>
+            <div>
+                <input type="text" class="txt" value="" disabled name="phone"/>
+                <a data-type="phone">修改手机</a>
+            </div>
+        </div>
+        <div class="user-item">
+            <label>密码</label>
+            <div class="haspass" style="display: none">
+                <input type="password" class="txt" value="****" disabled name="pass"/>
+                <a data-type="password">修改密码</a>
+            </div>
+            <div class="notpass" style="display: none">
+                <input type="password" class="txt" value="****" disabled name="pass"/>
+                <a>绑定邮箱和手机后可设置</a>
+            </div>
+        </div>
+        <div class="user-item lh">
+            <label>绑定微信</label>
+            <div><span style="color:#19c105;" class="icons">&#xe647;</span><a id="bingweixin" data-type="weixin">绑定</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

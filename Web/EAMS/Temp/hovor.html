@@ -1,0 +1,85 @@
+.box {
+            width: 300px;
+            {#padding-left: 100px;#}
+            {#padding-top: 200px;#}
+            {#position: absolute;#}
+            {#top: 50%;#}
+            {#left: 50%;#}
+            {#transform: translate(-50%, -50%);#}
+            {#background: #191919;#}
+            text-align: center;
+            margin-left: 150px;
+            margin-top: 30px;
+        }
+
+        .box h1 {
+            color: black;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .box h4{
+            font-weight: 200;
+            color: gray;
+        }
+
+        .box input[type='text'],
+        .box input[type='password'] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            {#border: 2px solid #3498db;#}
+            border: 2px solid black;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: black;
+            border-radius: 4px;
+            transition: 0.25s;
+            font-size: 15px;
+        }
+
+        .box input[type='text']:focus,
+        .box input[type='password']:focus {
+            width: 280px;
+            border-color: red;
+        }
+
+        .submit {
+            border: 0;
+            background: none;
+            margin: 20px auto;
+            margin-top: 0;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid black;
+            padding: 10px 40px;
+            outline: none;
+            color: black;
+            border-radius: 4px;
+            transition: 0.25s;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .submit:hover {
+            background: #3498db;
+            border-color: black;
+        }
+
+
+
+
+    <div class="box">
+			<h1>添加教务管理员</h1><br>
+            <h4>请如实填写下列信息</h4>
+			<input type="text" placeholder="姓名" />
+			<input type="password" placeholder="密码"/>
+        			<input type="password" placeholder="密码"/>
+        			<input type="password" placeholder="密码"/>
+        			<input type="password" placeholder="密码"/>
+			<a class="submit" href="">添加</a>
+    </div>

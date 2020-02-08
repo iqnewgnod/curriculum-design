@@ -1,0 +1,23 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+    <div class="menu3">
+        <form method="post" action="/admin/changeEA/add">
+            <h1>教务管理员信息录入</h1>
+            <label>姓名</label>
+            <input type="text" name="name"placeholder="不超过5个汉字"><br>
+            <label>密码</label>
+            <input type="password" name="pw"placeholder="不超过20个字符"><br>
+            <label>再次输入密码</label>
+            <input type="password" placeholder="不超过20个字符"><br>
+            <label>出生日期</label>
+            <input type="text" name="yyy"  placeholder="1983" style="width: 80px;">&nbsp;年
+            <input type="text" name="mmm" placeholder="3" style="width: 40px;">&nbsp;月
+            <input type="text" name="ddd" placeholder="18" style="width: 40px;">&nbsp;日<br>
+            <label>性别</label>
+            <input type="radio" name="sex" checked value="男">&nbsp;男
+            <input type="radio" name="sex" style="margin-left: 30px" value="女">&nbsp;女<br>
+            <input type="submit" style=" margin-left: 300px; margin-top: 50px;" value="确定">
+        </form>
+    </div>
+
+{% endblock %}

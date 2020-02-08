@@ -1,0 +1,45 @@
+{% extends 'staff/staff.html' %}
+{% block content %}
+    <div class="menu3" style="height: 650px">
+        <form method="post" action="/staff/changeCou/add">
+            <h1>开课课程信息录入</h1>
+            <label>课程名</label>
+            <select name="课程名" style="margin-left: 0px;width: 320px;">
+                {% for i in cou %}
+                    <option value="{{ i[0] }}">{{ i[0] }}</option>
+                {% endfor %}
+            </select><br>
+            <label>任课老师编号</label>
+            <input type="text" name="teaId" placeholder="格式：0001">
+            <br>
+            <label>开课年份</label>
+            <input type="text" name="年份" placeholder="格式：2017"><br>
+            <label>开课专业</label>
+            <select name="开课专业" style="margin-left: 0px;width: 320px;">
+                {% for i in maj %}
+                    <option value="{{ i[0] }}">{{ i[0] }}</option>
+                {% endfor %}
+            </select><br>
+            <label>开课班级</label>
+            <select name="开课班级" style="margin-left: 0px;width: 320px;">
+                {% for i in cls %}
+                    <option value="{{ i[0] }}">{{ i[0] }}</option>
+                {% endfor %}
+            </select><br>
+            <label>选课人数上限</label>
+            <input type="text" name="人数" placeholder="格式：120"><br>
+            <label>开课学期</label>
+            <select name="学期" style="margin-left: 0px;width: 320px;">
+                <option>春季</option>
+                <option>夏季</option>
+                <option>秋季</option>
+                <option>冬季</option>
+            </select><br>
+            {% with messages = get_flashed_messages() %}
+                <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+            {% endwith %}
+            <input type="submit" style=" margin-left: 300px; margin-top: 50px;" value="确定">
+        </form>
+    </div>
+
+{% endblock %}

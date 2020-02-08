@@ -1,0 +1,52 @@
+{% extends 'staff/staff.html' %}
+{% block content %}
+    <div class="menu3" style="height: 1000px">
+        <h1>查询开课信息</h1>
+        <form method="get" action="/staff/changeStuInfo/query">
+            <table class="altrowstable" id="alternatecolor"
+                   style="margin-left: 30px; width: 750px; font-size: 13px">
+                <tr>
+                    <th style="width:120px;">
+                        {{ head[0] }}
+                    </th>
+                    <th style="width:70px;">
+                        {{ head[1] }}
+                    </th>
+                    <th style="width:90px;">
+                        {{ head[2] }}
+                    </th>
+                    <th style="width:100px;">
+                        {{ head[3] }}
+                    </th>
+                    <th style="width:98px;">
+                        出生日期
+                    </th>
+                    <th style="width:90px;">
+                        {{ head[7] }}
+                    </th>
+                    <th style="width:90px;">
+                        {{ head[8] }}
+                    </th>
+                </tr>
+                {% for i in res %}
+                    <tr>
+                        <td>{{ i[0] }}</td>
+                        <td>{{ i[1] }}</td>
+                        <td>{{ i[2] }}</td>
+                        <td>{{ i[3] }}</td>
+                        <td>{{ i[4] }}-{{ i[5] }}-{{ i[6] }}</td>
+                        <td>{{ i[7] }}</td>
+                        <td>{{ i[8] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <br>
+            {% with messages = get_flashed_messages() %}
+                <label style="color: red;width: auto">{{ messages[0] }}</label><br>
+            {% endwith %}
+        </form>
+        <form method="get" action="/staff/changeStuInfo/query">
+            <input type="submit" value="返回" style="margin-left: 300px">
+        </form>
+    </div>
+{% endblock %}

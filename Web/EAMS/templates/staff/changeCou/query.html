@@ -1,0 +1,92 @@
+{% extends 'staff/staff.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3" style="height: 1000px">
+            <h1>查询开课信息</h1>
+            <form method="get" action="/staff/changeCou/query2">
+                <select name="sel">
+                    <option value="课序号">课序号
+                    <option value="课程编号">课程编号
+                    <option value="开课班级">开课班级
+                    <option value="开课专业">开课专业
+                    <option value="开课年份">开课年份
+                    <option value="任课老师编号">任课老师编号
+                </select>
+                <input type="text" name="txt" style="margin-left: 30px">
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto">{{ messages[0] }}</label><br>
+                {% endwith %}
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3">
+            <script>
+                function del(id, cls) {
+                    if (confirm("您确认删除课序号为：" + id + "的信息吗？") == true) {
+                        window.location.href = "/staff/changeCou/delete?id=" + id + "&cls=" + cls
+                        alert("删除成功~")
+                    }
+                }
+            </script>
+            <h1>查询开课信息</h1>
+            <form method="post" action="/staff/changeCou/query2">
+                <input type="hidden" name="sel" value="{{ ty }}">
+                <input type="hidden" name="txt" value="{{ va }}">
+                <table class="altrowstable" id="alternatecolor"
+                       style="margin-left: 30px; width: 750px; font-size: 13px">
+                    <tr>
+                        <th style="width:120px;">
+                            {{ head[0] }}
+                        </th>
+                        <th style="width:70px;">
+                            {{ head[1] }}
+                        </th>
+                        <th style="width:90px;">
+                            {{ head[2] }}
+                        </th>
+                        <th style="width:100px;">
+                            {{ head[3] }}
+                        </th>
+                        <th style="width:98px;">
+                            {{ head[4] }}
+                        </th>
+                        <th style="width:98px;">
+                            {{ head[5] }}
+                        </th>
+                        <th style="width:60px;">
+                            {{ head[6] }}
+                        </th>
+                        <th style="width:90px;">
+                            {{ head[7] }}
+                        </th>
+                        <th style="width:90px;">
+                            {{ head[8] }}
+                        </th>
+                        <th style="">删除</th>
+                    </tr>
+                    {% for i in res %}
+                        <tr>
+                            {% for j in i %}
+                                <td>{{ j }}</td>
+                            {% endfor %}
+                            <td>
+                                <input type="hidden" name="cbox2_cls" value="{{ i[5] }}">
+                                <input type="checkbox" name="cbox_id" value="{{ i[0] }}"
+                                       style="width: 30px; height: 30px;margin-left: 4px">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto">{{ messages[0] }}</label><br>
+                {% endwith %}
+                <input type="submit" value="确定" style="margin-left: 220px; float: left">
+            </form>
+            <form method="get" action="/staff/changeCou/query">
+                <input type="submit" value="返回" style="margin-left: 20px">
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

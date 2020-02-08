@@ -1,0 +1,41 @@
+{% extends 'staff/staff.html' %}
+{% block content %}
+    <div class="menu3" style="height: 650px">
+        <form method="post" action="/staff/changeStuInfo/add" enctype='multipart/form-data'>
+            <h1>学生信息录入</h1>
+            {% with messages = get_flashed_messages() %}
+                <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+                <label style="color: red;width: auto; display: block">{{ messages[1] }}</label>
+            {% endwith %}
+            <label>照片</label>
+            <input type="file" name="照片" accept="image/png"><br>
+            <label>姓名</label>
+            <input type="text" name="姓名" placeholder="不超过5个汉字"><br>
+            <label>密码</label>
+            <input type="password" name="密码" placeholder="不超过20个字符"><br>
+            <label>再次输入密码</label>
+            <input type="password" placeholder="不超过20个字符"><br>
+            <label>出生日期</label>
+            <input type="text" name="出生年份" placeholder="1983" style="width: 80px;">&nbsp;年
+            <input type="text" name="出生月份" placeholder="3" style="width: 40px;">&nbsp;月
+            <input type="text" name="出生日份" placeholder="18" style="width: 40px;">&nbsp;日<br>
+            <label>性别</label>
+            <input type="radio" name="性别" checked value="男">&nbsp;男
+            <input type="radio" name="性别" style="margin-left: 30px" value="女">&nbsp;女<br>
+            <label>班级</label>
+            <select name="班级" style="margin-left: 0px;width: 300px;">
+                {% for i in cls %}
+                    <option value="{{ i[0] }}">{{ i[0] }}
+                {% endfor %}
+            </select><br>
+            <label>专业</label>
+            <select name="专业" style="margin-left: 0px;width: 300px;">
+                {% for i in maj %}
+                    <option value="{{ i[0] }}">{{ i[0] }}
+                {% endfor %}
+            </select>
+            <input type="submit" style=" margin-left: 300px; margin-top: 50px;" value="确定">
+        </form>
+    </div>
+
+{% endblock %}

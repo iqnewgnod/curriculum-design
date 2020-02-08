@@ -1,0 +1,34 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3">
+            <h1>修改教务员信息</h1>
+            <form method="post" action="/admin/changeEA/change">
+                <label>教工号</label>
+                <input type="text" name="txt">
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3">
+            <form method="post" action="/admin/changeEA/change2">
+                <h1>修改教务员信息</h1>
+                <label>姓名</label>
+                <input type="text" name="name" value="{{ res[0][1] }}"><br>
+                <label>教工号</label>
+                <input type="text" name="id" value="{{ res[0][0] }}" readonly style="background-color: #f0f0f0" ><br>
+                <label>密码</label>
+                <input type="text" name="pw" value="{{ res[0][6] }}"><br>
+                <label>出生日期</label>
+                <input type="text" name="yyy" value="{{ res[0][2] }}" style="width: 80px;">&nbsp;年
+                <input type="text" name="mmm" value="{{ res[0][3] }}" style="width: 40px;">&nbsp;月
+                <input type="text" name="ddd" value="{{ res[0][4] }}" style="width: 40px;">&nbsp;日<br>
+                <label>性别</label>
+                <input type="radio" name="sex" {% if res[0][5]=="男" %} checked {% endif %} value="男">&nbsp;男
+                <input type="radio" name="sex" {% if res[0][5]=="女" %} checked {% endif %} style="margin-left: 30px"
+                       value="女">&nbsp;女<br>
+                <input type="submit" style=" margin-left: 300px; margin-top: 50px;" value="确定">
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

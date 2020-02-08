@@ -1,0 +1,32 @@
+{% extends 'student/student.html' %}
+{% block content %}
+    <div class="menu3" style="height: 700px">
+        <form method="get" action="/student/queryInf/query">
+            <h1>学生信息</h1>
+            <div style="margin-top: 50px">
+                <label style="float:left;align-content: center;margin-top: 0px">照片</label>
+                <img src="../../../static/picture/student/{{ res[0][9] }}.png"
+                     style=" width: 60px;height: 80px;margin-left: 5px">
+            </div>
+            <label>姓名</label>
+            <input type="text" name="name" value="{{ res[0][1] }}" disabled><br>
+            <label>学号</label>
+            <input type="text" name="id" value="{{ res[0][0] }}" disabled><br>
+            <label>密码</label>
+            <input type="text" name="pw" value="{{ res[0][8] }}" disabled><br>
+            <label>出生日期</label>
+            <input type="text" name="yyy" value="{{ res[0][4] }}" style="width: 80px;" disabled>&nbsp;年
+            <input type="text" name="mmm" value="{{ res[0][5] }}" style="width: 40px;" disabled>&nbsp;月
+            <input type="text" name="ddd" value="{{ res[0][6] }}" style="width: 40px;" disabled>&nbsp;日<br>
+            <label>性别</label>
+            <input type="radio" name="sex" {% if res[0][3]=="男" %} checked {% endif %} value="男" disabled>&nbsp;男
+            <input type="radio" name="sex" {% if res[0][3]=="女" %} checked {% endif %} style="margin-left: 30px"
+                   value="女" disabled>&nbsp;女<br>
+            <label>班级</label>
+            <input type="text" name="cls" value="{{ res[0][7] }}" disabled><br>
+            <label>专业</label>
+            <input type="text" name="maj" value="{{ res[0][2] }}" disabled><br>
+{#            <input type="submit" style=" margin-left: 300px; margin-top: 50px;" value="返回">#}
+        </form>
+    </div>
+{% endblock %}

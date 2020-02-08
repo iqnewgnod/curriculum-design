@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            background: #f0f0f0;
+        }
+
+        .wrapper {
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            align-content: center;
+        }
+
+        .content {
+            float: left;
+        }
+
+        .menu {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            position: relative;
+            color: white;
+            font-size: 25px;
+        {#font-weight: 200;#} font-family: sans-serif;
+            display: block;
+            overflow: hidden;
+            transition: 0.7s all;
+            padding: 14px 30px;
+            text-transform: uppercase;
+        }
+
+        .menu li a:before {
+            content: '';
+            width: 60px;
+            position: absolute;
+            border-bottom: 8px solid #313131;
+            bottom: 0;
+            right: 350px;
+            transition: 0.7s all;
+        }
+
+        .menu li a:hover:before {
+            right: 0;
+        }
+
+        .menu2 {
+            width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            list-style: none;
+            margin-top: 20px;
+            float: left;
+            margin-left: 0px;
+        }
+
+        .menu2 a {
+            text-decoration: none;
+
+        }
+
+        .item {
+            /* border-top: 1px solid #2980b9; */
+            overflow: hidden;
+        }
+
+        .btn {
+            display: block;
+            padding: 16px 20px;
+            background: #3498db;
+            color: white;
+            position: relative;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #3498db;
+            left: 20px;
+            bottom: -7px;
+            transform: rotate(45deg);
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+
+        .smenu {
+            background: #333;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            max-height: 0;
+        }
+
+        .smenu a {
+            display: block;
+            padding: 16px 26px;
+            color: white;
+            font-size: 14px;
+            margin: 4px 0;
+            position: relative;
+        }
+
+        .smenu a:before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 100%;
+            background: #3498db;
+            left: 0;
+            top: 0;
+            transition: 0.3s;
+            opacity: 0;
+        }
+
+        .smenu a:hover::before {
+            opacity: 1;
+        }
+
+        .item:target .smenu {
+            max-height: 15em;
+        }
+
+        .menu3 {
+            background: white;
+            width: 800px;
+            height: 580px;
+            font-size: 18px;
+            color: black;
+            border: 1px #d7edff solid;
+            border-radius: 5px;
+            margin-top: 25px;
+            margin-left: 30px;
+        {#margin-left: 20px;#} box-shadow: 3px 1px 5px gray;
+            padding-top: 30px;
+        }
+
+        .menu3 h1 {
+            margin-left: 230px;
+            margin-bottom: 30px;
+            font-family: KaiTi;
+            font-weight: 900;
+        }
+
+        .menu3 label {
+            margin-left: 100px;
+            display: inline-block;
+            width: 130px;
+            margin-top: 30px;
+        }
+
+        .menu3 input[type = "text"], .menu3 input[type="password"] {
+            width: 320px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", " Microsoft Yahei", sans-serif;
+        }
+
+        .menu3 input[type='submit'] {
+            width: 160px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", " Microsoft Yahei", sans-serif;
+        }
+
+        .menu3 input[type='button'] {
+            width: 160px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", " Microsoft Yahei", sans-serif;
+        }
+
+        .menu3 select {
+            margin-left: 100px;
+            {#display: inline-block;#}
+            width: 100px;
+            height: 30px;
+            border-radius: 3px;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+
+        .menu3 option {
+            font-size: 16px;
+        }
+
+
+
+        table.altrowstable {
+            font-family: verdana, arial, sans-serif;
+            font-size: 14px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #a9c6c9;
+            border-collapse: collapse;
+
+        }
+
+        table.altrowstable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #a9c6c9;
+        }
+
+        table.altrowstable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #a9c6c9;
+             {#width: 150px;#}
+        }
+
+        .oddrowcolor {
+            background-color: #f0f0f0;
+        }
+
+        .evenrowcolor {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function altRows(id) {
+        if (document.getElementsByTagName) {
+
+            var table = document.getElementById(id);
+            var rows = table.getElementsByTagName("tr");
+
+            for (i = 0; i < rows.length; i++) {
+                if (i % 2 == 0) {
+                    rows[i].className = "evenrowcolor";
+                } else {
+                    rows[i].className = "oddrowcolor";
+                }
+            }
+        }
+    }
+
+    window.onload = function () {
+        altRows('alternatecolor');
+    }
+
+
+</script>
+<div class="wrapper">
+    <div class="headerNav" style="background-color: #3498db">
+        <img src="../../static/admin/logo.png" style="float: left;height: 60px;padding-right: 60px; margin-left: 30px">
+        <ul class="menu">
+            <li><a href="#">主页</a></li>
+            <li><a href="#">功能</a></li>
+            <li><a href="https://ie.wh.sdu.edu.cn">资讯</a></li>
+            <li><a href="/contactMe">联系我们</a></li>
+        </ul>
+    </div>
+    <div class="menu2">
+        <li class="item" id="education">
+            <a href="#education" class="btn"><i class="far fa-user"></i>教师开课信息查看</a>
+            <div class="smenu">
+                <a href="/teacher/course/query">开设课程基本信息</a>
+                <a href="/teacher/course/student">开设课程学生名单</a>
+            </div>
+        </li>
+        <li class="item" id="major">
+            <a href="#major" class="btn"><i class="fas fa-cog"></i>密码修改</a>
+            <div class="smenu">
+                <a href="/teacher/changePwd/change">密码修改</a>
+            </div>
+        </li>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends 'student/student.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3">
+            <h1>查询可退课程信息</h1>
+            <form method="get" action="/student/course/delete3">
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+                    <label style="color: red;width: auto; display: block">{{ messages[1] }}</label>
+                {% endwith %}
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3">
+            <script>
+                function sbt(id) {
+                    if (confirm("您确认删除学号为：" + id + "的信息吗？") == true) {
+                        window.location.href = "/staff/changeStuInfo/delete?id=" + id
+                        alert("删除成功~")
+                    }
+                }
+
+                function sel() {
+                    document.getElementById('form').submit();
+                }
+            </script>
+            <h1>查询可退课程信息</h1>
+            <form id="form" method="post" action="/student/course/delete3">
+                <table class="altrowstable" id="alternatecolor" style="margin-left: 30px; width: 750px">
+                    <tr>
+                        <th style="width:auto;">
+                            {{ head[0] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[1] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[2] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[3] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[4] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[5] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[6] }}
+                        </th>
+                        <th style="width: auto;">退选</th>
+                    </tr>
+                    {% for i in res %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                            <td>{{ i[5] }}</td>
+                            <td>{{ i[6] }}</td>
+                            <td>
+                                <input type="checkbox" name="cbox" value="{{ i[7] }}"
+                                       style="width: 30px; height: 30px">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <input type="button" onclick="sel()" style="margin-left: 220px; margin-top: 30px; float: left" value="确定">
+            </form>
+            <form method="get" action="/student/course/delete">
+                <input type="submit" style="margin-left: 20px; margin-top: 30px" value="返回">
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'staff/staff.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3">
+            <h1>删除学生信息</h1>
+            <form method="get" action="/staff/changeStuInfo/delete2">
+                <select name="sel">
+                    <option value="学号">学号
+                    <option value="姓名">姓名
+                    <option value="专业">专业
+                    <option value="性别">性别
+                    <option value="班级">班级
+                </select>
+                <input type="text" name="txt">
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+                {% endwith %}
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3" style="height: 1000px">
+            <script>
+                function del(id) {
+                    if (confirm("您确认删除学号为：" + id + "的信息吗？") == true) {
+                        window.location.href = "/staff/changeStuInfo/delete?id=" + id
+                        alert("删除成功~")
+                    }
+                }
+            </script>
+            <h1>删除学生信息</h1>
+            <form method="post" action="/staff/changeStuInfo/delete2">
+                <input type="hidden" name="sel" value="{{ ty }}">
+                <input type="hidden" name="txt" value="{{ value }}">
+                <table class="altrowstable" id="alternatecolor" style="margin-left: 30px; width: 750px">
+                    <tr>
+                        <th style="width:98px;">
+                            {{ head[0] }}
+                        </th>
+                        <th style="width:54px;">
+                            {{ head[1] }}
+                        </th>
+                        <th style="width:73px;">
+                            {{ head[2] }}
+                        </th>
+                        <th style="width:35px;">
+                            {{ head[3] }}
+                        </th>
+                        <th style="width:100px;">
+                            出生日期
+                        </th>
+                        <th style="width:180px;">
+                            {{ head[7] }}
+                        </th>
+                        <th style="width:54px;">
+                            {{ head[8] }}
+                        </th>
+                        <th style="width:45px;">
+                            {{ head[9] }}
+                        </th>
+
+                        <th style="width:50px;">删除</th>
+                    </tr>
+                    {% for i in res %}
+                        <tr>
+                            <td>
+                                {{ i[0] }}
+                            </td>
+                            <td>
+                                {{ i[1] }}
+                            </td>
+                            <td>
+                                {{ i[2] }}
+                            </td>
+                            <td>
+                                {{ i[3] }}
+                            </td>
+                            <td align="center">
+                                {{ i[4] }}-{{ i[5] }}-{{ i[6] }}
+                            </td>
+                            <td>
+                                {{ i[7] }}
+                            </td>
+                            <td>
+                                {{ i[8] }}
+                            </td>
+                            <td>
+                                {{ i[9] }}
+                            </td>
+                            <td>
+
+                                <input type="checkbox" name="cbox" value="{{ i[0] }}"
+                                       style="width: 30px; height: 30px;margin-left: 6px">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+             {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+                {% endwith %}
+                <input type="submit" value="确定" style="margin-left: 220px;float: left">
+            </form>
+            <form method="get" action="/staff/changeStuInfo/delete">
+                <input type="submit" value="返回" style="margin-left: 20px">
+            </form>
+        </div>
+
+    {% endif %}
+{% endblock %}

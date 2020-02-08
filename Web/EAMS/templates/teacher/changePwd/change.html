@@ -1,0 +1,18 @@
+{% extends 'teacher/teacher.html' %}
+{% block content %}
+        <div class="menu3" style="height: 650px">
+        <form method="post" action="/teacher/changePwd/change">
+            <h1>教师密码修改</h1>
+            <label>原密码</label>
+            <input type="password" name="old" placeholder="不超过10个字符"><br>
+            <label>新密码</label>
+            <input type="password" name="new" placeholder="不超过10个字符"><br>
+            <label>再次输入</label>
+            <input type="password" name="密码" placeholder="不超过10个字符"><br>
+            {% with messages = get_flashed_messages() %}
+                <label style="color: red;width: auto;display: block">{{ messages[0] }}</label><br>
+            {% endwith %}
+            <input type="submit" style=" margin-left: 300px; margin-top: 50px;" value="确定">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'teacher/teacher.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3">
+            <h1>查询课程学生名单</h1>
+            <form method="get" action="/teacher/course/student3">
+                <label>课序号</label>
+                <input type="text" name="txt" style="margin-left: 30px">
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto">{{ messages[0] }}</label><br>
+                {% endwith %}
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3">
+            <script>
+                function del(id, cls) {
+                    if (confirm("您确认删除课序号为：" + id + "的信息吗？") == true) {
+                        window.location.href = "/staff/changeCou/delete?id=" + id + "&cls=" + cls
+                        alert("删除成功~")
+                    }
+                }
+            </script>
+            <h1>查询课程学生名单</h1>
+            <form method="post" action="/teacher/course/student3">
+                <input type="hidden" value="{{ res[0][0] }}" name="txt">
+                <table class="altrowstable" id="alternatecolor"
+                       style="margin-left: 30px; width: 750px; font-size: 13px">
+                    <tr>
+                        <th style="width:auto;">
+                            {{ head[0] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[1] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[2] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[3] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[4] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[5] }}
+                        </th>
+
+                    </tr>
+                    {% for i in res %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                            <td align="center" width="70px">
+                                <input name="hid_couid" type="hidden" value="{{ i[0] }}">
+                                <input name="hid_stuid" type="hidden" value="{{ i[4] }}">
+                                <input type="text" style="width: 50px" name="grade" value="{{ i[5] }}"></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto">{{ messages[0] }}</label><br>
+                {% endwith %}
+                <input style="margin-left: 220px; float: left" type="submit" value="确定">
+            </form>
+            <form method="get" action="/teacher/course/student">
+                <input style="margin-left: 20px" type="submit" value="返回">
+            </form>
+            <a href="/download/{{ dirpath }}" style="margin: 30px 220px; text-decoration: none; color: black; display:block;width: 340px;border:1px solid #CCC;background:#d9d9d9;height:30px;text-align: center;border-radius: 3px;font-size: 18px;font-weight: bold;">下载EXCEL导入成绩</a>
+            <form method="post" action="/teacher/course/student4" enctype='multipart/form-data'>
+                <input type="hidden" value="{{ res[0][0] }}" name="txt">
+                <input style="margin-left: 220px; width: 160px" type="file" name="file" value="上传EXCEL导入">
+                <input type="submit" style="margin-left: 15px">
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

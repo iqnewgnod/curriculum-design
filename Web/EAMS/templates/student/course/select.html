@@ -1,0 +1,173 @@
+{% extends 'student/student.html' %}
+{% block content %}
+    {% if res == None %}
+        <div class="menu3">
+            <h1>查询可选课程信息</h1>
+            <form method="get" action="/student/course/select3">
+                {% with messages = get_flashed_messages() %}
+                    <label style="color: red;width: auto; display: block">{{ messages[0] }}</label>
+                    <label style="color: red;width: auto; display: block">{{ messages[1] }}</label>
+                {% endwith %}
+                <input type="submit" style="margin-left: 300px; margin-top: 30px" value="查询">
+            </form>
+        </div>
+    {% else %}
+        <div class="menu3" style="height: 1000px">
+            <script>
+                function sbt(id) {
+                    if (confirm("您确认删除学号为：" + id + "的信息吗？") == true) {
+                        window.location.href = "/staff/changeStuInfo/delete?id=" + id
+                        alert("删除成功~")
+                    }
+                }
+
+                function sel() {
+                    document.getElementById('form').submit();
+                }
+
+                function sel1() {
+                    document.getElementById('form1').submit();
+                }
+            </script>
+            <h1>查询可选课程信息</h1>
+            <div style="margin-top: 20px">
+                <form method="post" action="/student/course/select4">
+                    <label style="margin-top: 0px; margin-left: 170px">按课程名查找</label>
+                    <input type="text" name="courseName" style="width:200px;"><br>
+                    <label style="margin-top: 20px;margin-left: 170px">按任课教师查找</label>
+                    <input type="text" name="courseTea" style="width:200px;"><br>
+                    <input style="margin-left: 270px; margin-top: 20px" type="submit" value="查询">
+                </form>
+                {% if head_course != None %}
+                    <form id="form1" method="post" action="/student/course/select3">
+                        <table class="altrowstable" id="alternatecolor" style="margin-left: 30px; margin-top: 20px;width: 750px">
+                            <tr>
+                                <th style="width:auto;">
+                                    {{ head_course[0] }}
+                                </th>
+                                <th style="width:auto;">
+                                    {{ head_course[1] }}
+                                </th>
+                                <th style="width:auto;">
+                                    {{ head_course[2] }}
+                                </th>
+                                <th style="width:auto;">
+                                    {{ head_course[3] }}
+                                </th>
+                                <th style="width:auto;">
+                                    {{ head_course[4] }}
+                                </th>
+                                <th style="width:auto;">
+                                    {{ head_course[5] }}
+                                </th>
+                                <th style="width:auto;">
+                                    {{ head_course[6] }}
+                                </th>
+                                <th style="width: auto;">选修</th>
+                            </tr>
+                            {% for i in res_course %}
+                                <tr>
+                                    <td>{{ i[0] }}</td>
+                                    <td>{{ i[1] }}</td>
+                                    <td>{{ i[2] }}</td>
+                                    <td>{{ i[3] }}</td>
+                                    <td>{{ i[4] }}</td>
+                                    <td>{{ i[5] }}</td>
+                                    <td>{{ i[6] }}</td>
+                                    <td>
+                                        <input type="checkbox" name="cbox" value="{{ i[7] }}"
+                                               style="width: 30px; height: 30px">
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {% for i in res2_course %}
+                                <tr>
+                                    <td>{{ i[0] }}</td>
+                                    <td>{{ i[1] }}</td>
+                                    <td>{{ i[2] }}</td>
+                                    <td>{{ i[3] }}</td>
+                                    <td>{{ i[4] }}</td>
+                                    <td>{{ i[5] }}</td>
+                                    <td>{{ i[6] }}</td>
+                                    <td>
+                                        <input type="checkbox" name="cbox" value="{{ i[7] }}"
+                                               style="width: 30px; height: 30px" checked disabled>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <input type="button" onclick="sel1()" style="margin-left: 220px; margin-top: 30px; float: left"
+                               value="确定选课">
+                    </form>
+                    <form method="get" action="/student/course/select">
+                        <input type="submit" style="margin-left: 20px; margin-top: 30px" value="返回">
+                    </form>
+                {% endif %}
+            </div>
+            <h1 style="margin-top: 20px">所有课程信息</h1>
+            <form id="form" method="post" action="/student/course/select3">
+                <table class="altrowstable" id="alternatecolor" style="margin-left: 30px; width: 750px">
+                    <tr>
+                        <th style="width:auto;">
+                            {{ head[0] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[1] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[2] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[3] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[4] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[5] }}
+                        </th>
+                        <th style="width:auto;">
+                            {{ head[6] }}
+                        </th>
+                        <th style="width: auto;">选修</th>
+                    </tr>
+                    {% for i in res %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                            <td>{{ i[5] }}</td>
+                            <td>{{ i[6] }}</td>
+                            <td>
+                                <input type="checkbox" name="cbox" value="{{ i[7] }}"
+                                       style="width: 30px; height: 30px">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% for i in res2 %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                            <td>{{ i[5] }}</td>
+                            <td>{{ i[6] }}</td>
+                            <td>
+                                <input type="checkbox" name="cbox" value="{{ i[7] }}"
+                                       style="width: 30px; height: 30px" checked disabled>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <input type="button" onclick="sel()" style="margin-left: 220px; margin-top: 30px; float: left"
+                       value="确定选课">
+            </form>
+            <form method="get" action="/student/course/select">
+                <input type="submit" style="margin-left: 20px; margin-top: 30px" value="返回">
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
